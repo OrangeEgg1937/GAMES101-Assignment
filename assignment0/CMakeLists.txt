@@ -18,5 +18,3 @@ add_executable(Transformation main.cpp)
 
 # Include the Eigen3 headers
 target_include_directories(Transformation PRIVATE ${EIGEN3_INCLUDE_DIR})
-
-target_link_libraries(Transformation PRIVATE Eigen3)
