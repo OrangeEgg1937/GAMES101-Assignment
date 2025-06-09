@@ -16,7 +16,7 @@
   2. Construct the projection matrix using the derived values.
 
   3. For the Z-Near and Z-Far:
-     - <https://stackoverflow.com/questions/28286057trying-to-understand-the-math-behind-the-perspective-matrix-in-webgl>
+     - [Reference](https://stackoverflow.com/questions/28286057/trying-to-understand-the-math-behind-the-perspective-matrix-in-webgl)
      - In here, take the - sign convention for z-axis, so that the camera looks towards the negative z-axis.
      - From the formula we use is assuming the camera is looking towards the negative z-axis and the near and far planes are at -zNear and -zFar respectively.
 
