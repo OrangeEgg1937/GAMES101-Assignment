@@ -1,6 +1,7 @@
-#include "Triangle.hpp"
+﻿#include "Triangle.hpp"
 #include "rasterizer.hpp"
-#include <eigen3/Eigen/Eigen>
+#include<Eigen/Core>
+#include<Eigen/Dense>
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
@@ -23,9 +24,18 @@ Eigen::Matrix4f get_model_matrix(float rotation_angle)
 {
     Eigen::Matrix4f model = Eigen::Matrix4f::Identity();
 
-    // TODO: Implement this function
+    // Implement this function
     // Create the model matrix for rotating the triangle around the Z axis.
     // Then return it.
+    float angle_rad = rotation_angle * MY_PI / 180.0f;
+    Eigen::Matrix4f rotation_matrix;
+
+    rotation_matrix << std::cos(angle_rad), -std::sin(angle_rad), 0, 0,
+                       std::sin(angle_rad),  std::cos(angle_rad), 0, 0,
+                                         0,                    0, 1, 0,
+		                                 0,                    0, 0, 1;
+
+    model = model * rotation_matrix;
 
     return model;
 }
@@ -37,9 +47,42 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
 
     Eigen::Matrix4f projection = Eigen::Matrix4f::Identity();
 
-    // TODO: Implement this function
+    // Implement this function
     // Create the projection matrix for the given parameters.
     // Then return it.
+
+    // https://math.stackexchange.com/questions/4522384/how-is-aspect-ratio-used-in-perspective-projection
+    // The projection matrix is for a general frustum, assume the viewing volume is symmetric.
+    // Then we have r + 1 = 0, t + b = 0 => r = -l, t = -b
+
+    // Finding the values of l, r, b, t, n, f
+    auto eye_fov_rad = eye_fov / 180.0f * MY_PI;
+    auto t = std::tan(eye_fov_rad / 2) * std::abs(zNear); // FOV = tan(x/2) = t / |n|, where x is the vertical FOV angle
+    auto r = t * aspect_ratio; // aspect_ratio = (r - l) / (t - b)
+    auto b = -t;
+    auto l = -r;
+
+    // https://stackoverflow.com/questions/28286057/trying-to-understand-the-math-behind-the-perspective-matrix-in-webgl
+    // In here, take the - sign convention for z-axis, so that the camera looks towards the negative z-axis.
+    // from the formula we use is assuming the camera is looking towards the negative z-axis
+    // and the near and far planes are at -zNear and -zFar respectively.
+
+    auto n = -zNear;
+    auto f = -zFar;
+
+    Eigen::Matrix4f persp_to_ortho_matrix;
+    persp_to_ortho_matrix << n, 0, 0, 0,
+					         0, n, 0, 0,
+					         0, 0, n + f, -n * f,
+					         0, 0, 1, 0;
+
+    Eigen::Matrix4f ortho_matrix;
+    ortho_matrix << 2 / (r - l), 0, 0, -(r + l) / (r - l),
+					0, 2 / (t - b), 0, -(t + b) / (t - b),
+					0, 0, 2 / (n - f), -(n + f) / (n - f),
+					0, 0, 0, 1;
+
+    projection = ortho_matrix * persp_to_ortho_matrix;
 
     return projection;
 }
@@ -102,13 +145,15 @@ int main(int argc, const char** argv)
         cv::imshow("image", image);
         key = cv::waitKey(10);
 
-        std::cout << "frame count: " << frame_count++ << '\n';
+        // std::cout << "frame count: " << frame_count++ << '\n';
 
         if (key == 'a') {
             angle += 10;
+            std::cout << "Clicked a";
         }
         else if (key == 'd') {
             angle -= 10;
+            std::cout << "Clicked d";
         }
     }
 
