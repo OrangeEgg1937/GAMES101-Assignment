@@ -2,7 +2,21 @@
 
 ## Task
 
-## [Not tested] Methods of isInsideTriangle()
+## Cross Product (Sign Test) explanation
+
+> Reference: [Point in triangle test](https://blackpawn.com/texts/pointinpoly/)
+
+![Cross Product](https://blackpawn.com/texts/pointinpoly/diag02.jpg)
+
+The basic idea of the cross product method is to use cross products to check the point P is on the Top of Edge AP or Bottom of Edge AP. (In cross product, it means pointing up or down.)
+
+To figure out whether the point P should "Top" or "Bottom", we can use the cross product with a reference edge, which is the cross product that related to the third point C. Then if they are in the same direction, the value of the cross product will be positive, otherwise, it will be negative. (Because poining to the same direction means theta = 0)
+
+![Inside](./reference/inside.png)
+
+![Outside](./reference/outside.png)
+
+## [Not tested] Common methods of isInsideTriangle()
 
 During my self-study, I found that there are many different ways to check whether the point P inside or outside the triangle. At the beginning, I was confused by the various methods. After some reading and just asking the AI, it summarized the common method below:
 
