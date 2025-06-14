@@ -79,7 +79,7 @@ namespace rst
     private:
         void draw_line(Eigen::Vector3f begin, Eigen::Vector3f end);
 
-        void rasterize_triangle(const Triangle& t);
+        void rasterize_triangle(const Triangle& t, bool isSuperSampling = false);
 
         // VERTEX SHADER -> MVP -> Clipping -> /.W -> VIEWPORT -> DRAWLINE/DRAWTRI -> FRAGSHADER
 
@@ -95,6 +95,15 @@ namespace rst
         std::vector<Eigen::Vector3f> frame_buf;
 
         std::vector<float> depth_buf;
+
+        // Added: For solving the super-sampling black line issue
+        // link: https://blog.csdn.net/ycrsw/article/details/123910834
+        // It is important to note that each sample within a pixel
+        // needs to maintain its own depth value, meaning that each pixel needs to maintain a sample
+        // list. Finally, if you implement this correctly, the triangles you obtain should not have any abnormal black edges.
+        std::vector<Eigen::Vector3f> frame_sample;
+        std::vector<float> depth_sample;
+
         int get_index(int x, int y);
 
         int width, height;

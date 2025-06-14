@@ -30,17 +30,23 @@ During my self-study, I found that there are many different ways to check whethe
 | **Coordinate Transformation** | ⭐⭐          | ⭐⭐                  | ⭐⭐                        | • Batch processing<br>• Preprocessing scenarios<br>• Academic research                     |
 
 ### Computational Cost (Operations Count)
-| Method | Multiplications | Additions | Comparisons | Special Operations |
-|--------|----------------|-----------|-------------|-------------------|
-| Barycentric Coordinates | 8-12 | 6-8 | 3-4 | 2 divisions |
-| Cross Product | 6 | 3 | 3 | None |
-| Area Comparison | 12-15 | 8-10 | 1 | 4 area calculations |
-| Same Side | 9 | 6 | 3 | 3 dot products |
-| Ray Casting | 4-8 | 2-4 | 2-6 | Line intersection tests |
-| Coordinate Transformation | 12+ | 8+ | 3 | Matrix operations |
+| Method                    | Multiplications | Additions | Comparisons | Special Operations      |
+| ------------------------- | --------------- | --------- | ----------- | ----------------------- |
+| Barycentric Coordinates   | 8-12            | 6-8       | 3-4         | 2 divisions             |
+| Cross Product             | 6               | 3         | 3           | None                    |
+| Area Comparison           | 12-15           | 8-10      | 1           | 4 area calculations     |
+| Same Side                 | 9               | 6         | 3           | 3 dot products          |
+| Ray Casting               | 4-8             | 2-4       | 2-6         | Line intersection tests |
+| Coordinate Transformation | 12+             | 8+        | 3           | Matrix operations       |
 
 ## Result
 
 ![Result](result.png)
 
+### With SSAA:
+
+![Result with SSAA](./ssaa.png)
+
 ## Reference
+
+- [Point in triangle test](https://blackpawn.com/texts/pointinpoly/)
