@@ -4,7 +4,8 @@
 
 #pragma once
 
-#include <eigen3/Eigen/Eigen>
+#include <Eigen/Core>
+#include <Eigen/Dense>
 #include <optional>
 #include <algorithm>
 #include "global.hpp"
