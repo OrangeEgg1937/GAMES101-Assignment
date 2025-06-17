@@ -9,4 +9,4 @@
 
 ## Reference
 
-- [Point in triangle test](https://zhuanlan.zhihu.com/p/419872527)
+- [Bump Map](https://www.slideshare.net/slideshow/bump-mapping/74531555#5)
