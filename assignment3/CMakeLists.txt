@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.10)
 project(Rasterizer)
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Specify the path to the Eigen3 headers
 # Assuming Eigen3 is in project_root/dependency/Eigen3
