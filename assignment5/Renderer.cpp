@@ -226,6 +226,10 @@ void Renderer::Render(const Scene& scene)
             float x;
             float y;
             // TODO: Find the x and y positions of the current pixel to get the direction
+            
+            x = 1.0f;
+            y = 1.0f;
+
             // vector that passes through it.
             // Also, don't forget to multiply both of them with the variable *scale*, and
             // x (horizontal) variable with the *imageAspectRatio*            
@@ -246,5 +250,5 @@ void Renderer::Render(const Scene& scene)
         color[2] = (char)(255 * clamp(0, 1, framebuffer[i].z));
         fwrite(color, 1, 3, fp);
     }
-    fclose(fp);    
+    fclose(fp);
 }
