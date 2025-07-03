@@ -73,9 +73,9 @@ The basic idea is to use the Möller–Trumbore algorithm to find the intersecti
 # At last, by the triple product, we got
 # https://en.wikipedia.org/wiki/Triple_product
 
-D = E0 · (E1 × d)
-β = T · (E1 × d) / D
-γ = E0 · (T × d) / D
+D = E0 · (E1 × -d)
+β = T · (E1 × -d) / D
+γ = E0 · (T × -d) / D
 t = E0 · (E1 × T) / D
 ```
 
