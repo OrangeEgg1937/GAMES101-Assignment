@@ -18,7 +18,7 @@ I skipped some advance part as I would like to left them in another project.
 | 2 	| Triangles and Z-buffering 	|   ✅   	|    ✅    	| June 14th 	|
 | 3 	|    Pipeline and Shading   	|   ✅   	|    ❌    	| June 21st 	|
 | 4 	|        Bézier curve       	|   ✅   	|    ✅    	| June 25th 	|
-| 5 	|     { not yet started}    	|       	|         	|           	|
+| 5 	|         Ray Trace          	|   ✅       |    n/a    	|  July 3rd   |
 | 6 	|     { not yet started}    	|       	|         	|           	|
 | 7 	|     { not yet started}    	|       	|         	|           	|
 | 8 	|     { not yet started}    	|       	|         	|           	|
