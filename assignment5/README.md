@@ -54,22 +54,32 @@ The basic idea is to use the Möller–Trumbore algorithm to find the intersecti
   D = Det | E0.y  E1.y  -d.y |
           | E0.z  E1.z  -d.z |
 
-  Det(β) = | T.x  E1.x  -d.x |
+  det(β) = | T.x  E1.x  -d.x |
            | T.y  E1.y  -d.y |
            | T.z  E1.z  -d.z |
 
-  Det(γ) = | E0.x  T.x  -d.x |
+  det(γ) = | E0.x  T.x  -d.x |
            | E0.y  T.y  -d.y |
            | E0.z  T.z  -d.z |
 
-  Det(t) = | E0.x  E1.x  T.x |
+  det(t) = | E0.x  E1.x  T.x |
            | E0.y  E1.y  T.y |
            | E0.z  E1.z  T.z |
 
-  β = Det(β) / D
-  γ = Det(γ) / D
-  t = Det(t) / D  
+  β = det(β) / D
+  γ = det(γ) / D
+  t = det(t) / D  
+
+# At last, by the triple product, we got
+# https://en.wikipedia.org/wiki/Triple_product
+
+D = E0 · (E1 × d)
+β = T · (E1 × d) / D
+γ = E0 · (T × d) / D
+t = E0 · (E1 × T) / D
 ```
+
+After calculating `β`, `γ`, and `t`, we can check if the intersection point lies within the triangle by ensuring that `β >= 0`, `γ >= 0`, and `β + γ <= 1`. If these conditions are met, we have a valid intersection.
 
 ## Result
 
