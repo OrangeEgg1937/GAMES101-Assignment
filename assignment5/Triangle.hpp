@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "Object.hpp"
 
@@ -17,11 +17,10 @@ bool rayTriangleIntersect(const Vector3f& v0, const Vector3f& v1, const Vector3f
 	Vector3f E1 = v2 - v0;
 	Vector3f T  = orig - v0;
 
-	auto D = dotProduct(E0, crossProduct(E1, dir));
-	if (D == 0) { return false; }
+	auto D = dotProduct(E0, crossProduct(E1, -dir));
 
-	auto beta = dotProduct(T, crossProduct(E1, dir)) / D;
-	auto gamma = dotProduct(E0, crossProduct(T, dir)) / D;
+	auto beta = dotProduct(T, crossProduct(E1, -dir)) / D;
+	auto gamma = dotProduct(E0, crossProduct(T, -dir)) / D;
 	auto t = dotProduct(E0, crossProduct(E1, T)) / D;
 
     if (t < 0 || beta < 0 || gamma < 0 || beta + gamma > 1) {
