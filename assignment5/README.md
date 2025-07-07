@@ -162,7 +162,9 @@ After calculating `β`, `γ`, and `t`, we can check if the intersection point li
 
 ## Result
 
-> There is some slight difference in the output images depending on the definition of the pixel coordinates. For the noise problem (some artifacts in the image), you may refer to the references part.
+> There is some slight difference in the output images depending on the definition of the pixel coordinates. For the noise problem (some artifacts in the image), it happened because of the floating point problem, you may refer to the references part for more detail.
+>
+> https://zhuanlan.zhihu.com/p/610959851
 
 ### If we assume the pixel coordinates are `(i, j)`
 
