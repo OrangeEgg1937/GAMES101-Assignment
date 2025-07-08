@@ -162,9 +162,16 @@ After calculating `β`, `γ`, and `t`, we can check if the intersection point li
 
 ## Result
 
+> [!NOTE]  
+> I updated the floating point solution, actually we have to use the scene.epsilon value as the offset
+
 > There is some slight difference in the output images depending on the definition of the pixel coordinates. For the noise problem (some artifacts in the image), it happened because of the floating point problem, you may refer to the references part for more detail.
 >
 > https://zhuanlan.zhihu.com/p/610959851
+
+### After we apply the epsilon value
+
+![final](./res/final.png)
 
 ### If we assume the pixel coordinates are `(i, j)`
 

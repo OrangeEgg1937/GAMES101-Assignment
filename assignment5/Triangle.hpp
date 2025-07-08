@@ -19,11 +19,13 @@ bool rayTriangleIntersect(const Vector3f& v0, const Vector3f& v1, const Vector3f
 
 	auto D = dotProduct(E0, crossProduct(E1, -dir));
 
+    if (std::abs(D) < 0.00001f) return false;
+
 	auto beta = dotProduct(T, crossProduct(E1, -dir)) / D;
 	auto gamma = dotProduct(E0, crossProduct(T, -dir)) / D;
 	auto t = dotProduct(E0, crossProduct(E1, T)) / D;
 
-    if (t < 0 || beta < 0 || gamma < 0 || beta + gamma > 1) {
+    if (t < 0 || beta < 0 || gamma < 0 || beta + gamma > (1 + 0.00001f)) {
 		return false;
     }
 
