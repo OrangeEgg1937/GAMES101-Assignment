@@ -33,8 +33,6 @@ void Renderer::Render(const Scene& scene)
             //  vector that passes through it.
             // Also, don't forget to multiply both of them with the variable
             // *scale*, and x (horizontal) variable with the *imageAspectRatio*
-            float x = (((i + 0.5) / (float)scene.width) * 2 - 1) * scale * imageAspectRatio;
-            float y = -(((j + 0.5) / (float)scene.height) * 2 - 1) * scale;
 
             Vector3f dir = normalize(Vector3f(x, y, -1)); // Don't forget to normalize this direction!
             // Don't forget to normalize this direction!
