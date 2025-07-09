@@ -97,6 +97,7 @@ inline bool Bounds3::IntersectP(const Ray& ray, const Vector3f& invDir,
     // dirIsNeg: ray direction(x,y,z), dirIsNeg=[int(x>0),int(y>0),int(z>0)], use this to simplify your logic
     // TODO test if ray bound intersects
     
+    
 }
 
 inline Bounds3 Union(const Bounds3& b1, const Bounds3& b2)
