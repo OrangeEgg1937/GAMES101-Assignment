@@ -81,6 +81,36 @@ return tEnter < tExit && tExit >= 0;
 
 ### BVH.cpp - getIntersection()
 
+This part is much simpler. We just need to check if the ray intersects with the bounding box of the BVH node. If it does, then we look into the children nodes to find the intersection.
+
+```C++
+struct BVHBuildNode {
+    Bounds3 bounds;
+    BVHBuildNode *left;
+    BVHBuildNode *right;
+    Object* object;
+
+public:
+    int splitAxis=0, firstPrimOffset=0, nPrimitives=0;
+    // BVHBuildNode Public Methods
+    BVHBuildNode(){
+        bounds = Bounds3();
+        left = nullptr;right = nullptr;
+        object = nullptr;
+    }
+};
+```
+
+The process is as follows:
+
+1. Check does it interset with the bounding box of the BVH node.
+2. If it does, check if the node is a leaf node (i.e., it has an object).
+3. If it is a leaf node, check if the ray intersects with the object.
+
+## Extra Part
+
+> Not planned to implement
+
 ## Result
 
 ## Reference
