@@ -104,6 +104,33 @@ Intersection BVHAccel::Intersect(const Ray& ray) const
 
 Intersection BVHAccel::getIntersection(BVHBuildNode* node, const Ray& ray) const
 {
-    // TODO Traverse the BVH to find intersection
-	return Intersection();
+	// Check the ray intersects the bounds of the node or not
+    std::array<int, 3> dirIsNeg = { int(ray.direction.x > 0), int(ray.direction.y > 0), int(ray.direction.z > 0) };
+    if (!node->bounds.IntersectP(ray, ray.direction_inv, dirIsNeg)) return Intersection();
+	
+	// Check if the node is a leaf node
+    if (node->left == nullptr && node->right == nullptr) {
+        // If it is a leaf node, check if the ray intersects the object
+        if (node->object == nullptr) return Intersection();
+		
+		auto isRayIntersetWithObject = node->object->getBounds().IntersectP(ray, ray.direction_inv, dirIsNeg);
+		return isRayIntersetWithObject ? node->object->getIntersection(ray) : Intersection();
+	}
+
+	// Traverse the left and right child nodes
+    Intersection leftIntersection = getIntersection(node->left, ray);
+	Intersection rightIntersection = getIntersection(node->right, ray);
+
+	// Check which one closest to the ray origin
+    if (leftIntersection.happened && rightIntersection.happened) {
+        return leftIntersection.distance < rightIntersection.distance ? leftIntersection : rightIntersection;
+    }
+    else if (leftIntersection.happened) {
+        return leftIntersection;
+    }
+    else if (rightIntersection.happened) {
+        return rightIntersection;
+	}
+
+	return Intersection(); // No intersection found
 }
